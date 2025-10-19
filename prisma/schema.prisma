@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../app/generated/prisma"
 }
 
 datasource db {
@@ -21,9 +20,9 @@ model Barbershop {
   id          String                @id @default(cuid())
   name        String
   address     String
-  phone       String[]
+  phones      String[]
   description String
-  imageUrl    String
+  imageUrl    String?
   services    BarbershopService[]
   createdAt   DateTime              @default(now())
   updatedAt   DateTime              @updatedAt
