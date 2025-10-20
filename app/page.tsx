@@ -3,6 +3,9 @@ import Header from "./_components/header"
 import { Button } from "./_components/ui/button"
 import { Input } from "./_components/ui/input"
 import Image from "next/image"
+import { Card, CardContent } from "./_components/ui/card"
+import { Badge } from "./_components/ui/badge"
+import { Avatar, AvatarImage } from "./_components/ui/avatar"
 
 export default function Home() {
   return (
@@ -33,6 +36,30 @@ export default function Home() {
               className="w-full rounded-xl object-cover"
             />
           </div>
+
+          <Card className="mt-6 p-0">
+            <CardContent className="flex justify-between p-0">
+              <div className="flex flex-col gap-2 py-5 pl-5">
+                <Badge className="w-fit">Confirmado</Badge>
+
+                <h3 className="font-semibold">Corte de Cabelo</h3>
+
+                <div className="flex items-center-safe gap-2">
+                  <Avatar className="h-6 w-6">
+                    <AvatarImage src="https://utfs.io/f/c4919193-a675-4c47-9f21-ebd86d1c8e6a-4oen2a.png" />
+                  </Avatar>
+
+                  <p className="text-sm">Barbearia FSW</p>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center justify-center border-l-2 border-solid px-5">
+                <p className="text-sm">Agosto</p>
+                <p className="text-2xl">05</p>
+                <p className="text-sm">20:00</p>
+              </div>
+            </CardContent>
+          </Card>
         </section>
       </main>
     </div>
