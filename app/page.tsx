@@ -8,9 +8,13 @@ import { Badge } from "./_components/ui/badge"
 import { Avatar, AvatarImage } from "./_components/ui/avatar"
 import { db } from "./_lib/prisma"
 import BarbershopItem from "./_components/barbershop-item"
+import Footer from "./_components/footer"
 
 export default async function Home() {
   const barbershops = await db.barbershop.findMany({})
+  const popularBarbershops = await db.barbershop.findMany({
+    orderBy: { name: "desc" },
+  })
 
   return (
     <div>
@@ -29,6 +33,38 @@ export default async function Home() {
 
             <Button>
               <SearchIcon />
+            </Button>
+          </div>
+
+          <div className="[&:: -webkit-scrollbar]:hidden mt-6 flex gap-3 overflow-x-scroll">
+            <Button className="gap-2" variant="secondary">
+              <Image src="/cabelo.svg" alt="Cabelo" width={16} height={16} />
+              Cabelo
+            </Button>
+
+            <Button className="gap-2" variant="secondary">
+              <Image src="/barba.svg" alt="Barba" width={16} height={16} />
+              Barba
+            </Button>
+
+            <Button className="gap-2" variant="secondary">
+              <Image
+                src="/acabamento.svg"
+                alt="Acabamento"
+                width={16}
+                height={16}
+              />
+              Acabamento
+            </Button>
+
+            <Button className="gap-2" variant="secondary">
+              <Image src="/cabelo.svg" alt="Cabelo" width={16} height={16} />
+              Cabelo
+            </Button>
+
+            <Button className="gap-2" variant="secondary">
+              <Image src="/cabelo.svg" alt="Cabelo" width={16} height={16} />
+              Cabelo
             </Button>
           </div>
 
@@ -78,8 +114,20 @@ export default async function Home() {
               <BarbershopItem key={barbershop.id} barbershop={barbershop} />
             ))}
           </div>
+
+          <h2 className="mt-6 mb-3 text-xs font-bold text-gray-400 uppercase">
+            Populares
+          </h2>
+
+          <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+            {popularBarbershops.map((barbershop) => (
+              <BarbershopItem key={barbershop.id} barbershop={barbershop} />
+            ))}
+          </div>
         </section>
       </main>
+
+      <Footer />
     </div>
   )
 }
