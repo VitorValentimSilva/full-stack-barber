@@ -16,7 +16,7 @@ const BarbershopItem = ({ barbershop }: BarbershopItemProps) => {
       <CardContent className="p-0 px-2 py-3">
         <div className="relative h-[159px] w-full">
           <Image
-            src={barbershop.imageUrl ?? ""}
+            src={barbershop.imageUrl}
             alt={barbershop.name}
             fill
             className="rounded-2xl object-cover"
