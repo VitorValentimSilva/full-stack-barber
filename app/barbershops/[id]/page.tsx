@@ -1,3 +1,4 @@
+import PhoneItem from "@/app/_components/phone-item"
 import ServiceItem from "@/app/_components/service-item"
 import { Button } from "@/app/_components/ui/button"
 import { db } from "@/app/_lib/prisma"
@@ -7,14 +8,12 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 
 interface BarberShopPageProps {
-  params: {
-    id: string
-  }
+  params: Promise<{ id: string }>
 }
 
 const BarberShopPage = async ({ params }: BarberShopPageProps) => {
   const barbershop = await db.barbershop.findUnique({
-    where: { id: params.id },
+    where: { id: (await params).id },
     include: {
       services: true,
     },
@@ -84,6 +83,12 @@ const BarberShopPage = async ({ params }: BarberShopPageProps) => {
             <ServiceItem key={service.id} service={service} />
           ))}
         </div>
+      </div>
+
+      <div className="space-y-3 p-5">
+        {barbershop.phones.map((phone, index) => (
+          <PhoneItem key={`${phone}-${index}`} phone={phone} />
+        ))}
       </div>
     </div>
   )
