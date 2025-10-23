@@ -31,11 +31,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}
       >
         <AuthProvider>
-          {children}
+          <div className="flex h-full flex-col">
+            <div className="flex-1">{children}</div>
+            <Footer />
+          </div>
 
           <Toaster />
-
-          <Footer />
         </AuthProvider>
       </body>
     </html>

@@ -114,9 +114,12 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border antialiased;
+  }
+  html {
+    @apply h-full;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground h-full;
   }
 }
