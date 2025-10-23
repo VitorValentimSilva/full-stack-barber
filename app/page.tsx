@@ -6,6 +6,7 @@ import BarbershopItem from "./_components/barbershop-item"
 import { quickSearchItems } from "./_constantsy/search"
 import { BookingItem } from "./_components/booking-item"
 import Search from "./_components/search"
+import { Link } from "lucide-react"
 
 export default async function Home() {
   const barbershops = await db.barbershop.findMany({})
@@ -31,14 +32,21 @@ export default async function Home() {
 
           <div className="[&:: -webkit-scrollbar]:hidden mt-6 flex gap-3 overflow-x-scroll">
             {quickSearchItems.map((item) => (
-              <Button key={item.title} className="gap-2" variant="secondary">
-                <Image
-                  src={item.imageUrl}
-                  alt={item.title}
-                  width={16}
-                  height={16}
-                />
-                {item.title}
+              <Button
+                key={item.title}
+                className="gap-2"
+                variant="secondary"
+                asChild
+              >
+                <Link href={`/barbershops?services=${item.title}`}>
+                  <Image
+                    src={item.imageUrl}
+                    alt={item.title}
+                    width={16}
+                    height={16}
+                  />
+                  {item.title}
+                </Link>
               </Button>
             ))}
           </div>
