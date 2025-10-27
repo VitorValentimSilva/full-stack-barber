@@ -6,7 +6,7 @@ import BarbershopItem from "./_components/barbershop-item"
 import { quickSearchItems } from "./_constantsy/search"
 import { BookingItem } from "./_components/booking-item"
 import Search from "./_components/search"
-import { Link } from "lucide-react"
+import Link from "next/link"
 
 export default async function Home() {
   const barbershops = await db.barbershop.findMany({})
